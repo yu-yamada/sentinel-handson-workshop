@@ -1,0 +1,9 @@
+import "tfplan"
+
+main = rule {
+  all tfplan.resources.google_compute_instance as _, instances {
+    all instances as _, r {
+      (length(r.applied.labels) else 0) > 0
+    }
+  }
+}
